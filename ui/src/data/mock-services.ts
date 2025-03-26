@@ -1,4 +1,4 @@
-import { Service, ServiceStatus, Environment } from '@/types/service';
+import { Service, ServiceStatus, Environment, ServiceDeployment } from '@/types/service';
 
 const environments: Environment[] = ['development', 'staging', 'production'];
 const teams = ['Platform', 'Frontend', 'Backend', 'Data'];
@@ -26,7 +26,7 @@ export const mockServices: Service[] = Array.from({ length: 12 }, (_, i) => ({
     deployments: environments.reduce((acc, env) => ({
         ...acc,
         [env]: createMockDeployment(env),
-    }), {} as Record<Environment, any>),
+    }), {} as Record<Environment, ServiceDeployment>),
     status: randomStatus(),
     lastUpdated: new Date(Date.now() - Math.floor(Math.random() * 7 * 24 * 60 * 60 * 1000)).toISOString(),
 })); 
